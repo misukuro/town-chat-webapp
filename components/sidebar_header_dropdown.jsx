@@ -226,6 +226,7 @@ export default class SidebarHeaderDropdown extends React.Component {
             isAdmin = TeamStore.isTeamAdminForCurrentTeam() || UserStore.isSystemAdminForCurrentUser();
             isSystemAdmin = UserStore.isSystemAdminForCurrentUser();
 
+            /*
             inviteLink = (
                 <li>
                     <button
@@ -240,6 +241,7 @@ export default class SidebarHeaderDropdown extends React.Component {
                     </button>
                 </li>
             );
+            */
 
             addMemberToTeam = (
                 <li>
@@ -257,6 +259,7 @@ export default class SidebarHeaderDropdown extends React.Component {
             );
 
             if (this.props.teamType === Constants.OPEN_TEAM && config.EnableUserCreation === 'true') {
+              /*
                 teamLink = (
                     <li>
                         <button
@@ -271,6 +274,7 @@ export default class SidebarHeaderDropdown extends React.Component {
                         </button>
                     </li>
                 );
+                */
             }
 
             if (global.window.mm_license.IsLicensed === 'true') {
@@ -421,6 +425,7 @@ export default class SidebarHeaderDropdown extends React.Component {
                 );
             }
 
+            /*
             teams.push(
                 <li key='leaveTeam_li'>
                     <button
@@ -435,6 +440,7 @@ export default class SidebarHeaderDropdown extends React.Component {
                     </button>
                 </li>
             );
+            */
         }
 
         let helpLink = null;

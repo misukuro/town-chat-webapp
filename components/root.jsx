@@ -98,6 +98,7 @@ export default class Root extends React.Component {
     redirectIfNecessary(props) {
         const experimentalPrimaryTeam = global.mm_config.ExperimentalPrimaryTeam;
         const primaryTeam = TeamStore.getByName(experimentalPrimaryTeam);
+        console.log('redirectIfNecessary');
         if (props.location.pathname === '/') {
             if (UserStore.getNoAccounts()) {
                 browserHistory.push('/signup_user_complete');
@@ -106,8 +107,18 @@ export default class Root extends React.Component {
             } else if (UserStore.getCurrentUser()) {
                 GlobalActions.redirectUserToDefaultTeam();
             } else {
+                // 非ログインユーザはtownに飛ばす
                 browserHistory.push('/login' + window.location.search);
+                //window.location.replace('https://www.morimati.info/town/town/mattermost_session.cgi');
+                //window.location.replace(Client4.getOAuthRoute() + '/town/login' + this.props.location.search)
+                console.log('飛ばす');
             }
+        } else if (props.location.pathname === '/login_from_town') {
+          // 非ログインユーザはtownに飛ばす
+          browserHistory.push('/login' + window.location.search);
+          //window.location.replace('https://www.morimati.info/town/town/mattermost_session.cgi');
+                console.log('飛ばす2');
+          window.location.replace(Client4.getOAuthRoute() + '/town/login' + this.props.location.search)
         }
     }
 

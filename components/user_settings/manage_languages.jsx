@@ -30,7 +30,7 @@ export default class ManageLanguage extends React.Component {
     }
 
     changeLanguage(e) {
-        e.preventDefault();
+        e && e.preventDefault();
 
         if (this.props.user.locale === this.state.locale) {
             this.props.updateSection(e);

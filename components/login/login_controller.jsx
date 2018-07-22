@@ -302,6 +302,7 @@ export default class LoginController extends React.Component {
         return global.window.mm_config.EnableSignUpWithEmail === 'true' ||
             global.window.mm_config.EnableSignUpWithGitLab === 'true' ||
             global.window.mm_config.EnableSignUpWithOffice365 === 'true' ||
+            global.window.mm_config.EnableSignUpWithTown === 'true' ||
             global.window.mm_config.EnableSignUpWithGoogle === 'true' ||
             global.window.mm_config.EnableLdap === 'true' ||
             global.window.mm_config.EnableSaml === 'true';
@@ -359,6 +360,7 @@ export default class LoginController extends React.Component {
         const ldapEnabled = this.state.ldapEnabled;
         const gitlabSigninEnabled = global.window.mm_config.EnableSignUpWithGitLab === 'true';
         const googleSigninEnabled = global.window.mm_config.EnableSignUpWithGoogle === 'true';
+        const townSigninEnabled = global.window.mm_config.EnableSignUpWithTown === 'true';
         const office365SigninEnabled = global.window.mm_config.EnableSignUpWithOffice365 === 'true';
         const samlSigninEnabled = this.state.samlEnabled;
         const usernameSigninEnabled = this.state.usernameSigninEnabled;
@@ -480,7 +482,7 @@ export default class LoginController extends React.Component {
             );
         }
 
-        if ((emailSigninEnabled || usernameSigninEnabled || ldapEnabled) && (gitlabSigninEnabled || googleSigninEnabled || samlSigninEnabled || office365SigninEnabled)) {
+        if ((emailSigninEnabled || usernameSigninEnabled || ldapEnabled) && (gitlabSigninEnabled || googleSigninEnabled || samlSigninEnabled || office365SigninEnabled || townSigninEnabled)) {
             loginControls.push(
                 <div
                     key='divider'
@@ -500,6 +502,26 @@ export default class LoginController extends React.Component {
                         defaultMessage='Sign in with:'
                     />
                 </h5>
+            );
+        }
+
+        if (townSigninEnabled) {
+            loginControls.push(
+                <a
+                    className='btn btn-custom-login gitlab'
+                    key='gitlab'
+                    href={Client4.getOAuthRoute() + '/town/login' + this.props.location.search}
+                >
+                    <span>
+                        <span className='icon'/>
+                        <span>
+                            <FormattedMessage
+                                id='login.town'
+                                defaultMessage='森の街タウン'
+                            />
+                        </span>
+                    </span>
+                </a>
             );
         }
 
